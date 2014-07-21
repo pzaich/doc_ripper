@@ -2,11 +2,11 @@ module DocRipper
   class TextRipper < Ripper::Base
 
     def rip
-      @text ||=choose_ripper
+      @is_ripped ||=choose_ripper
     end
 
     def read
-      @file ||= File.open(@text_file_path) if rip
+      @text ||= File.open(@text_file_path) if rip
     end
 
     private
