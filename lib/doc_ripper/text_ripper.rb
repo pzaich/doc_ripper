@@ -4,17 +4,17 @@ module DocRipper
     def rip
       case @file_path
       when @file_path[-4.. -1] =~ /.doc$/i
-        #doc ripper
-        DocRipper.new().read
+        MsDocRipper.new(@file_path).rip
       when @file_path[-5.. -1] =~ /.docx$/i
         #docx ripper
+        DocxRipper.new(@file_path).rip
       when @file_path[-4..-1]  =~ /.pdf$/i
-
+        PdfRipper.new(@file_path).rip
       end
     end
 
     def read
-      File.open(@file_path) if rip
+      File.open(@text_file_path) if rip
     end
 
   end
