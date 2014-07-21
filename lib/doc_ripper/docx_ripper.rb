@@ -2,7 +2,7 @@ module DocRipper
   class DocxRipper < Ripper::Base
 
     def rip
-      @text ||= system(%Q[ unzip -p #{@file_path} | grep '<w:t' | sed 's/<[^<]*>//g' | grep -v '^[[:space:]]*$' > #{@text_file_path} ])
+      @text ||= system(%Q[ unzip -p #{to_shell(@file_path)} | grep '<w:t' | sed 's/<[^<]*>//g' | grep -v '^[[:space:]]*$' > #{to_shell(@text_file_path)} ])
     end
 
   end

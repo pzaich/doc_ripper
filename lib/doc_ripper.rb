@@ -1,3 +1,4 @@
+require 'shellwords'
 require "doc_ripper/version"
 require "doc_ripper/ripper/base"
 require "doc_ripper/text_ripper"
