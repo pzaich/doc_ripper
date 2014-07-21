@@ -7,7 +7,7 @@ module DocRipper
     end
 
     def text
-      @text ||= File.open(@text_file_path) if rip
+      @text ||= File.open(@text_file_path, "r:utf-8") if rip
     end
 
     private
