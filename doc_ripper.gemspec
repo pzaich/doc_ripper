@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = DocRipper::VERSION
   spec.authors       = ["Paul Zaich"]
   spec.email         = ["pzaich@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{Rip out text from pdf, doc and docx formats}
+  spec.description   = %q{Provides a lean, convenient ruby wrapper to poppler, and antiword command line tools to quickly rip out text from common text formats.}
   spec.homepage      = ""
   spec.license       = "MIT"
 
