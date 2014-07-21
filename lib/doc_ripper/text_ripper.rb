@@ -1,5 +1,6 @@
 module DocRipper
   class TextRipper < Ripper::Base
+    attr_reader :text_file_path, :file_path
 
     def rip
       @is_ripped ||=choose_ripper
