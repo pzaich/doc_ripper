@@ -6,29 +6,29 @@ Need OCR support or in-image text parsing? Take a look at [Docsplit](https://git
 
 ## Quickstart
 
-  ```
-    gem install doc_ripper
-  ```
-  ### Specify a file to parse
+```
+  gem install doc_ripper
+```
+### Specify a file to parse
 
-  ```
-    DocRipper::TextRipper.new('/path/to/file')
-  ```
+```
+  DocRipper::TextRipper.new('/path/to/file')
+```
 
-  ### Return the file's text
-  ```
-    dr = DocRipper::TextRipper.new('/path/to/file')
-    dr.text
-    => "Document's text"
-  ```
+### Return the file's text
+```
+  dr = DocRipper::TextRipper.new('/path/to/file')
+  dr.text
+  => "Document's text"
+```
 
-  If the file cannot be read, nil will be returned.
+If the file cannot be read, nil will be returned.
 
-  ```
-    dr = DocRipper::TextRipper.new('/path/to/missing/file')
-    dr.text
-    => nil
-  ```
+```
+  dr = DocRipper::TextRipper.new('/path/to/missing/file')
+  dr.text
+  => nil
+```
 
 
 ## Dependencies
