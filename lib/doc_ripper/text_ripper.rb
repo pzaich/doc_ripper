@@ -1,3 +1,5 @@
+#encoding: UTF-8
+
 module DocRipper
   class TextRipper < Ripper::Base
     attr_reader :text_file_path, :file_path
@@ -7,7 +9,7 @@ module DocRipper
     end
 
     def text
-      @text ||= File.open(@text_file_path, "r:utf-8") if rip
+      @text ||= IO.read(@text_file_path).force_encoding("ISO-8859-1").encode("utf-8", replace: nil) if rip
     end
 
     private
