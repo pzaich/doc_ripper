@@ -7,5 +7,8 @@ require "doc_ripper/docx_ripper"
 require "doc_ripper/ms_doc_ripper"
 
 module DocRipper
-
+  class << self
+    def rip(path)
+    end
+  end
 end

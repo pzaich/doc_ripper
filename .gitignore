@@ -4,6 +4,7 @@ Gemfile.lock
 *.DS_Store
 
 /tmp/
+/spec/tmp/
 /doc/
 /rdoc/
 /coverage/
