@@ -2,8 +2,11 @@ require 'spec_helper'
 
 module DocRipper
   describe 'provide a clean api to return the text from a document' do
-    let(:docx_path) { }
-    let(:invalid_path) { }
+    let(:doc_path)     { "#{FIXTURE_PATH}lorem.doc"  }
+    let(:docx_path)    { "#{FIXTURE_PATH}lorem.docx" }
+    let(:pdf_path)     { "#{FIXTURE_PATH}lorem.docx" }
+    let(:invalid_path) { "#{FIXTURE_PATH}lorem.txt" }
+    let(:missing_path) { "#{FIXTURE_PATH}some_missing_path.docx" }
 
     context '#rip' do
 
@@ -11,18 +14,19 @@ module DocRipper
         expect(DocRipper.respond_to? :rip).to eq(true)
       end
 
-      it 'should respond with text to valid file extensions ' do
-        puts "#{FIXTURE_PATH}lorem.doc"
-        expect(DocRipper.rip("#{FIXTURE_PATH}lorem.doc")).not_to eq(nil)
+      it 'should respond with text to valid file extensions' do
+        expect(DocRipper.rip(doc_path)).not_to eq(nil)
+        expect(DocRipper.rip(docx_path)).not_to eq(nil)
+        expect(DocRipper.rip(pdf_path)).not_to eq(nil)
       end
 
       it 'should respond with nil if file is missing' do
-
+        expect(DocRipper.rip(missing_path)).to eq(nil)
       end
 
 
       it 'should respond with nil if the file is the wrong type' do
-
+        expect(DocRipper.rip(invalid_path)).to eq(nil)
       end
 
       it 'should remove the dumped text version of the file' do
