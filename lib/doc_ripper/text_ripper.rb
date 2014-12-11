@@ -23,7 +23,6 @@ module DocRipper
       when !!(@file_path[-4..-1]  =~ /.pdf/i)
         PdfRipper.new(@file_path).rip
       when @options[:raise]
-        puts 'Unsupported file type'
         raise UnsupportedFileType
       end
     end
