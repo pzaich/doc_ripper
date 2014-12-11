@@ -4,9 +4,10 @@ module DocRipper
     class Base
       attr_reader :text
 
-      def initialize(file_path)
+      def initialize(file_path, options = {})
         @file_path      = file_path
         @text_file_path = "#{file_path.split('.').first}.txt"
+        @options = options
       end
 
       private

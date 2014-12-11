@@ -22,6 +22,8 @@ module DocRipper
         MsDocRipper.new(@file_path).rip
       when !!(@file_path[-4..-1]  =~ /.pdf/i)
         PdfRipper.new(@file_path).rip
+      when @options[:raise]
+        raise UnsupportedFileType
       end
     end
 

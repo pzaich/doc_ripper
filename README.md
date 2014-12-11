@@ -1,6 +1,8 @@
-DocRipper is an extremely lightweight Ruby wrapper that can be used to parse text contents from common file formats (currently .doc, .docx and .pdf) without the need for a large number of dependencies like an OCR library or OpenOffice/LibreOffice.
+# DocRipper
 
-For simple parsing, you'll likely see a large performance improvement with DocRipper over solutions that rely on OpenOffice/LibreOffice for .doc/.docx conversion. I found
+Grab the text from common document formats with 1 command. DocRipper is an extremely lightweight Ruby wrapper that can be used to parse text contents from common file formats (currently .doc, .docx and .pdf) without the need for a large number of dependencies like an OCR library or OpenOffice/LibreOffice.
+
+For simple parsing, you'll likely see a large performance improvement with DocRipper over solutions that rely on OpenOffice/LibreOffice for .doc/.docx conversion.
 
 Need OCR support or in-image text parsing? Take a look at [Docsplit](https://github.com/documentcloud/docsplit).
 
@@ -9,26 +11,34 @@ Need OCR support or in-image text parsing? Take a look at [Docsplit](https://git
 ```
   gem install doc_ripper
 ```
-### Specify a file to parse
+### Specify a file path of a file
 
 ```
-  DocRipper::TextRipper.new('/path/to/file')
+  require 'doc_ripper'
+
+  DocRipper::rip('/path/to/file')
 ```
 
-### Return the file's text
-```
-  dr = DocRipper::TextRipper.new('/path/to/file')
-  dr.text
-  => "Document's text"
-```
-
-If the file cannot be read, nil will be returned.
+#### If the file cannot be read, nil will be returned.
 
 ```
-  dr = DocRipper::TextRipper.new('/path/to/missing/file')
-  dr.text
+  DocRipper::rip('/path/to/missing/file')
   => nil
 ```
+
+#### Want to raise an exception? Use #rip!
+#rip! will raise an exception if rip returns nil or the file type isn't supported
+
+```
+  # invalid file type
+  DocRipper::rip!('/path/to/invalide/file.type')
+  => DocRipper::UnsupportedFileType
+
+  # missing file
+  DocRipper::rip!('/path/to/missing/file.doc')
+  => DocRipper::FileNotFound
+```
+
 
 
 ## Dependencies
