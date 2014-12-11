@@ -1,4 +1,5 @@
 # DocRipper
+[![Gem Version](https://badge.fury.io/rb/doc_ripper.svg)](http://badge.fury.io/rb/doc_ripper)
 
 Grab the text from common document formats with 1 command. DocRipper is an extremely lightweight Ruby wrapper that can be used to parse text contents from common file formats (currently .doc, .docx and .pdf) without the need for a large number of dependencies like an OCR library or OpenOffice/LibreOffice.
 
@@ -27,7 +28,7 @@ Need OCR support or in-image text parsing? Take a look at [Docsplit](https://git
 ```
 
 #### Want to raise an exception? Use #rip!
-#rip! will raise an exception if rip returns nil or the file type isn't supported
+\#rip! will raise an exception if rip returns nil or the file type isn't supported
 
 ```
   # invalid file type
