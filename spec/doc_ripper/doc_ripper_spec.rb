@@ -5,8 +5,10 @@ module DocRipper
     let(:doc_path)     { "#{FIXTURE_PATH}lorem.doc"  }
     let(:docx_path)    { "#{FIXTURE_PATH}lorem.docx" }
     let(:pdf_path)     { "#{FIXTURE_PATH}lorem.docx" }
-    let(:invalid_path) { "#{FIXTURE_PATH}lorem.txt" }
-    let(:missing_path) { "#{FIXTURE_PATH}some_missing_path.docx" }
+    let(:invalid_path) { "#{FIXTURE_PATH}missing_file.docx" }
+    let(:invalid_file_type) { "#{FIXTURE_PATH}lorem.jpg"}
+    let(:missing_path) { "#{
+      FIXTURE_PATH}some_missing_path.docx" }
 
     context '#rip' do
 
@@ -38,11 +40,11 @@ module DocRipper
     context '#rip!' do
 
       it 'should respond with an exception if the file is missing' do
-
+        expect{DocRipper.rip!(invalid_path)}.to raise_error(FileNotFound)
       end
 
       it 'should respond with an exception if the file is the wrong type of extension' do
-
+        expect{DocRipper.rip!(invalid_file_type)}.to raise_error(UnsupportedFileType)
       end
 
       it 'should respond with an exception if the text file is nil' do

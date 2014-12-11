@@ -1,4 +1,7 @@
 module DocRipper
-  class RipFailure < StandardError
+  class FileNotFound < StandardError
+  end
+
+  class UnsupportedFileType < StandardError
   end
 end
