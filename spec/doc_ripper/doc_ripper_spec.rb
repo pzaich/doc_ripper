@@ -22,10 +22,21 @@ module DocRipper
         expect(DocRipper.rip(pdf_path)).not_to eq(nil)
       end
 
+      let(:lorem) { "Lorem ipsum dolor sit amet, consectetur adipiscing elit, \
+sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, \
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis \
+aute irure dolor \n\nin reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla \
+pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia \
+deserunt mollit anim id est laborum.\n"
+      }
+
+      it 'should rip docx files correctly' do
+        expect(DocRipper.rip(docx_path)).to be == lorem
+      end
+
       it 'should respond with nil if file is missing' do
         expect(DocRipper.rip(missing_path)).to eq(nil)
       end
-
 
       it 'should respond with nil if the file is the wrong type' do
         expect(DocRipper.rip(invalid_path)).to eq(nil)
