@@ -1,9 +1,13 @@
+require 'nokogiri'
+
 module DocRipper
   class DocxRipper < Ripper::Base
-
     def rip
-      @text ||= system(%Q[ unzip -p #{to_shell(@file_path)} | grep '<w:t' | sed 's/<[^<]*>//g' | grep -v '^[[:space:]]*$' > #{to_shell(@text_file_path)} ])
+      text = `unzip -p #{to_shell(@file_path)} | grep '<w:t'`
+      return unless text && text.length > 0
+      doc = Nokogiri::XML(text)
+      doc.xpath('//w:del').each(&:remove)
+      File.open(@text_file_path, 'w') { |f| f.write doc.xpath('//w:p').map(&:content).join("\n") }
     end
-
   end
 end
