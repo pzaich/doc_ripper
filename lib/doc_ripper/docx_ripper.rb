@@ -8,6 +8,7 @@ module DocRipper
       doc = Nokogiri::XML(text)
       doc.xpath('//w:del').each(&:remove)
       File.open(@text_file_path, 'w') { |f| f.write doc.xpath('//w:p').map(&:content).join("\n") }
+      text
     end
   end
 end
