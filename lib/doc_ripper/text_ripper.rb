@@ -17,11 +17,11 @@ module DocRipper
     def choose_ripper
       case
       when !!(@file_path[-5.. -1] =~ /.docx/i)
-        DocxRipper.new(@file_path).rip
+        Formats::DocxRipper.new(@file_path).rip
       when !!(@file_path[-4.. -1] =~ /.doc/i)
-        MsDocRipper.new(@file_path).rip
+        Formats::MsDocRipper.new(@file_path).rip
       when !!(@file_path[-4..-1]  =~ /.pdf/i)
-        PdfRipper.new(@file_path).rip
+        Formats::PdfRipper.new(@file_path).rip
       when @options[:raise]
         raise UnsupportedFileType
       end

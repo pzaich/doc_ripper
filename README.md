@@ -7,6 +7,14 @@ For simple parsing, you'll likely see a large performance improvement with DocRi
 
 Need OCR support or in-image text parsing? Take a look at [Docsplit](https://github.com/documentcloud/docsplit).
 
+### Supported File Formats
+````
+.doc
+.docx
+.pdf
+.txt
+````
+
 ## Quickstart
 
 ```
