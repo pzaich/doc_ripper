@@ -30,14 +30,20 @@ module DocRipper
         objects = CFPropertyList::List.new(data: data).value.value['$objects'].value
 
         evaluator = Proc.new do |object, previous_object, next_object|
-          digitsRegex = /\{\{\d*, \d*}, \{\d*, \d*\}\}/
+          coordinatesRegex = /\{\{\d*, \d*}, \{\d*, \d*\}\}|\{[\d.e-]*, [\d.]*\}/
 
           object.is_a?(CFPropertyList::CFString) &&
+            #ignore other blacklisted properties
             blacklist.select { |bl| object.value.match(/#{bl}/) }.empty? &&
+            #ignore uuids
             !object.value.match(/\w{8}-\w{4}-\w{4}-\w{4}-\w{12}/) &&
-            !object.value.match(digitsRegex) &&
+            #ignore coordinates
+            !object.value.match(coordinatesRegex) &&
+            #ignore font definitions
             previous_object.value != "NSFontNameAttribute" &&
+            # labels always have an dictionary defined afterwards
             next_object.is_a?(CFPropertyList::CFDictionary) &&
+            # Check if the string is defining the name of an artboard
             !(previous_object.is_a?(CFPropertyList::CFDictionary) && previous_object.value['$class'].value == 39)
         end
 
