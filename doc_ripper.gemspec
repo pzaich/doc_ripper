@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Paul Zaich"]
   spec.email         = ["pzaich@gmail.com"]
   spec.summary       = %q{Rip out text from pdf, doc and docx formats}
-  spec.description   = %q{Provides a lean, convenient ruby wrapper to poppler, and antiword command line tools to quickly rip out text from common text formats.}
+  spec.description   = %q{Scrape text from common file formats (.pdf,.doc,.docx, .sketch, .txt) with a single convenient command.}
   spec.homepage      = "https://github.com/pzaich/doc_ripper"
   spec.license       = "MIT"
 
