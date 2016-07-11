@@ -22,7 +22,6 @@ Gem::Specification.new do |spec|
   spec.requirements << "pdftotext/poppler"
 
   spec.add_dependency "sqlite3", "~> 1.3.11"
-  spec.add_dependency "activesupport", "~> 4.2.6"
   spec.add_dependency "CFPropertyList", '~> 2.3'
 
   spec.add_development_dependency "bundler", "~> 1.6"
