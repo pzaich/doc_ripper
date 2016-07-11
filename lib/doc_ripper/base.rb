@@ -10,6 +10,10 @@ module DocRipper
         @options = options
       end
 
+      def read_type
+        :file
+      end
+
       private
 
       def to_shell(file_path)
