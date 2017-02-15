@@ -22,7 +22,7 @@ File format | Supported? | Dependencies
 .docx       |     x      |
 .pdf        |     x      |   Poppler-utils
 .txt        |     x      |
-.sketch     |     x      |
+.sketch     |     x      |   Sqlite3
 
 ## Quickstart
 
@@ -63,3 +63,4 @@ File format | Supported? | Dependencies
  - Ruby version >= 1.9.2
  - [Poppler-utils/(pdftotext)](http://poppler.freedesktop.org/) (PDF)
  - [Antiword](http://www.winfield.demon.nl/) (docx) more info: http://linux.die.net/man/1/antiword
+ - Sketch support requires sqlite3 and the [sqlite3 gem](https://rubygems.org/gems/sqlite3) gem
