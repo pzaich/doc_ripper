@@ -1,8 +1,21 @@
 require 'cfpropertylist'
+require 'colored'
+
+SQLITE_LOAD_WARNING = 'SQLite3 optional dependency not found. Sketch files are not supported in this mode.'.yellow
+
+begin
+  # gem 'sqlite3'
+  require 'sqlite3'
+rescue LoadError
+  warn SQLITE_LOAD_WARNING
+end
 
 module DocRipper
   module Formats
     class SketchRipper < Ripper::Base
+
+      class Sqlite3NotFound < StandardError
+      end
 
       class CFPropertyList::CFString
         def to_s
@@ -31,6 +44,11 @@ module DocRipper
           return false if !klass
           klass.is_a?(CFPropertyList::CFArray)
         end
+      end
+
+      def initialize(file_path, options= {})
+        raise Sqlite3NotFound if !defined?(SQLite3)
+        super
       end
 
       def read_type
