@@ -46,17 +46,13 @@ module DocRipper
         end
       end
 
-      def initialize(file_path, options= {})
+      def initialize(file_path)
         raise Sqlite3NotFound if !defined?(SQLite3)
         super
       end
 
-      def read_type
-        :mem
-      end
-
       def rip
-        db = SQLite3::Database.new(@file_path)
+        db = SQLite3::Database.new(file_path)
         data = db.execute("SELECT value FROM payload").flatten.first
         @text ||= text_objects(data).join(" ").strip
       end

@@ -10,8 +10,24 @@ module DocRipper
     let(:missing_path) { "#{
       FIXTURE_PATH}some_missing_path.docx" }
 
-    context '#rip' do
+    context 'full utf-8 encoding' do
+      let(:str) { '¿Cuál es su nombre?' }
+      let(:file_path) { "#{FIXTURE_PATH}encoding_sample.txt" }
 
+      before(:each) do
+        File.write(file_path, str)
+      end
+
+      it 'maintains encoding' do
+        expect(DocRipper.rip(file_path)).to eq(str)
+      end
+
+      after(:each) do
+        File.delete(file_path)
+      end
+    end
+
+    context '#rip' do
       it 'should respond to #rip' do
         expect(DocRipper.respond_to? :rip).to eq(true)
       end
@@ -34,7 +50,6 @@ module DocRipper
       it 'should remove the dumped text version of the file' do
 
       end
-
     end
 
     context '#rip!' do
@@ -51,7 +66,5 @@ module DocRipper
       end
 
     end
-
-
   end
 end
