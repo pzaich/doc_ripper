@@ -10,20 +10,34 @@ module DocRipper
     let(:missing_path) { "#{
       FIXTURE_PATH}some_missing_path.docx" }
 
-    context 'full utf-8 encoding' do
-      let(:str) { '¿Cuál es su nombre?' }
-      let(:file_path) { "#{FIXTURE_PATH}encoding_sample.txt" }
+    describe 'full utf-8 encoding' do
+      let(:result) { DocRipper.rip(file_path) }
 
-      before(:each) do
-        File.write(file_path, str)
+      context 'txt file' do
+        let(:str) { '¿Cuál es su nombre?' }
+        let(:file_path) { "#{FIXTURE_PATH}encoding_sample.txt" }
+
+        before(:each) do
+          File.write(file_path, str)
+        end
+
+        it 'maintains encoding' do
+          expect(result).to eq(str)
+        end
+
+        after(:each) do
+          File.delete(file_path)
+        end
       end
 
-      it 'maintains encoding' do
-        expect(DocRipper.rip(file_path)).to eq(str)
-      end
+      describe 'docx file' do
+        let(:str) { '四、我们确认，我们完全同意招标文件制定的投标规则，并承诺按照这些规则履行我们的所有义务，包括一旦投标文件被贵方接受，将履行社会资本合作方的义务' }
+        let(:file_path) { "#{FIXTURE_PATH}chinese.docx" }
 
-      after(:each) do
-        File.delete(file_path)
+        it 'maintains encoding' do
+          puts result.encoding
+          expect(result).to include(str)
+        end
       end
     end
 

@@ -11,7 +11,7 @@ module DocRipper
       end
 
       def text
-        @text ||= rip && rip.encode(Encoding::UTF_8, replace: nil)
+        @text ||= rip
       end
 
       private
