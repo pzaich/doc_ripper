@@ -2,16 +2,16 @@ module DocRipper
   module Ripper
 
     class Base
-      attr_reader :text
+      attr_reader :file_path
 
-      def initialize(file_path, options = {})
+      def initialize(file_path)
+        file_parts      = file_path.split('.')
         @file_path      = file_path
-        @text_file_path = "#{file_path.split('.').first}.txt"
-        @options = options
+        @extension      = file_parts.last
       end
 
-      def read_type
-        :file
+      def text
+        @text ||= rip
       end
 
       private
