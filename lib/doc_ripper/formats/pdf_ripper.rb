@@ -3,7 +3,7 @@ module DocRipper
     class PdfRipper < Ripper::Base
 
       def rip
-        @text ||= %x(pdftotext #{to_shell(file_path)})
+        @text ||= %x(pdftotext #{to_shell(file_path)} -)
       end
 
     end
